@@ -8,16 +8,43 @@ mov ebx,0b8000h
 mov ecx,2000
 call fill16
 call starmem
+mov ecx,32
+mov esi,ARRAY1
+arrays:
+push esi
 mov edi,100
 call getmems
+pop esi
+ds
+mov [esi],edi
+add esi,4
+push esi
 mov esi,hello
 call copy 
-mov esi,hello2
+mov eax,0
+mov al,'A'
+add al,cl
+mov esi,hello3
+ds
+mov [esi],eax
 call cat
-mov esi,edi
+pop esi
+dec ecx
+cmp ecx,0
+jnz arrays
+mov ebx,ARRAY1
 mov edi,0b8000h
+mov ecx,32
+arrays2:
 mov ah,017h
 call copymem 
+ds
+mov esi,[ebx]
+add ebx,4
+add edi,80
+dec ecx
+cmp ecx,0
+jnz arrays2
 ret
 setmem:
 	push eax
@@ -211,7 +238,9 @@ cat:
 ret
 
 getmem dd 0
+ARRAY1 dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 hello db "hello world....",0
+hello3 dd 0,0,0,0,0
 hello2 db "there....",0
 endF db 0 
 
