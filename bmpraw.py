@@ -5,20 +5,20 @@ def rgb_to_byte(color):
     # As 16 primeiras cores do modo de vídeo 13h
     colors_13h = [
         (0, 0, 0),       # Cor 0: Preto
-        (0, 0, 128),     # Cor 1: Azul
-        (0, 128, 0),     # Cor 2: Verde
-        (0, 128, 128),   # Cor 3: Verde-azulado
-        (128, 0, 0),     # Cor 4: Vermelho
-        (128, 0, 128),   # Cor 5: Magenta
-        (128, 64, 0),    # Cor 6: Marrom
-        (192, 192, 192), # Cor 7: Cinza claro
+        (16, 16, 16),     # Cor 1: Azul
+        (32, 32, 32),     # Cor 2: Verde
+        (48, 48, 48),   # Cor 3: Verde-azulado
+        (64, 64, 64),     # Cor 4: Vermelho
+        (80, 80, 80),   # Cor 5: Magenta
+        (96, 96, 96),    # Cor 6: Marrom
+        (112, 112, 112), # Cor 7: Cinza claro
         (128, 128, 128), # Cor 8: Cinza escuro
-        (0, 0, 255),     # Cor 9: Azul brilhante
-        (0, 255, 0),     # Cor 10: Verde brilhante
-        (0, 255, 255),   # Cor 11: Verde-azulado brilhante
-        (255, 0, 0),     # Cor 12: Vermelho brilhante
-        (255, 0, 255),   # Cor 13: Magenta brilhante
-        (255, 255, 0),   # Cor 14: Amarelo
+        (144, 144, 144),     # Cor 9: Azul brilhante
+        (160, 160, 160),     # Cor 10: Verde brilhante
+        (176, 176, 176),   # Cor 11: Verde-azulado brilhante
+        (192, 192, 192),     # Cor 12: Vermelho brilhante
+        (208, 208, 208),   # Cor 13: Magenta brilhante
+        (240, 240, 240),   # Cor 14: Amarelo
         (255, 255, 255)  # Cor 15: Branco
     ]
 
@@ -34,10 +34,10 @@ def rgb_to_byte(color):
     return min_index
 
 # Carregue a imagem BMP de 16 cores
-image = Image.open('my.bmp')
+image = Image.open('output.bmp')
 
 # Converta a imagem para tons de cinza para facilitar a correspondência de cores
-image = image.convert('L')
+#image = image.convert('')
 
 # Crie uma lista para armazenar os valores de 0 a 255
 values = []
@@ -53,3 +53,4 @@ with open('output.raw', 'wb') as file:
     file.write(bytearray(values))
 
 print("Conversão concluída. Os valores foram salvos em 'output.raw'.")
+
